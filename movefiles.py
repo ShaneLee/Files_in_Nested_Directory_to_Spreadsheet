@@ -1,24 +1,31 @@
 import os
-import pathlib
+from shutil import move
 
 filetypes = ['pdf', 'epub', 'mobi']
 
-p = pathlib.Path(os.getcwd())
+p = (os.getcwd())
 
 def make_dirs():
 
     for dir in filetypes:
       try:
-        os.mkdir(p, '_' + dir)
+          os.mkdir(os.path.join(p, '_' + dir))
       except:
+        print("except " + dir)
         pass
 
 def move_files():
 
     for filetype in filetypes:
-        for f in p.glob('**/*.' + filetype):
-            new_name = '{}_{}'.format(f.parent.name, f.name)
-            f.rename(os.path.join('_' + filetype, new_name))
+        for path, subdirs, files in os.walk(p):
+            for f in files:
+                dest = str(p + '_' + filetype + '/' + f)
+                if f.endswith(filetype):
+                    print(f)
+                    try:
+                        move(str(path + '/' + f), dest)
+                    except:
+                        pass
 
 
 def main():
