@@ -1,17 +1,16 @@
 import os
 import pathlib
 
-OLD_DIR = 'files'
 filetypes = ['pdf', 'epub', 'mobi']
 
 p = pathlib.Path(os.getcwd())
 
 def make_dirs():
 
-    for dir in NEW_DIRS:
+    for dir in filetypes:
       try:
-        os.mkdir(p, dir)
-      catch:
+        os.mkdir(p, '_' + dir)
+      except:
         pass
 
 def move_files():
