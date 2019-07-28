@@ -19,8 +19,8 @@ def move_files():
     for filetype in filetypes:
         for path, subdirs, files in os.walk(p):
             for f in files:
-                dest = str(p + '_' + filetype + '/' + f)
-                if f.endswith('.' + filetype):
+                dest = str(os.path.join(p, '_' + filetype) + '/' + f)
+                if f.endswith(filetype):
                     print(f)
                     try:
                         move(str(path + '/' + f), dest)
