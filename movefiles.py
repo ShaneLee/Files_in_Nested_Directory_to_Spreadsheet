@@ -20,7 +20,7 @@ def move_files():
         for path, subdirs, files in os.walk(p):
             for f in files:
                 dest = str(p + '_' + filetype + '/' + f)
-                if f.endswith(filetype):
+                if f.endswith('.' + filetype):
                     print(f)
                     try:
                         move(str(path + '/' + f), dest)
